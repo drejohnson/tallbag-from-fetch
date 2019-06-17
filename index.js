@@ -1,6 +1,6 @@
 import makeShadow from 'shadow-callbag'
 
-const fromFetch = (input, init) => async (start, sink) => {
+const fromFetch = (input, init) => (start, sink) => {
   if (start !== 0) return
 
   const controller = new AbortController()
@@ -26,18 +26,22 @@ const fromFetch = (input, init) => async (start, sink) => {
 
   const shadow = makeShadow('fromFetch')
 
-  try {
-    const response = await fetch(input, init)
-    abortable = false
-    shadow(1, response)
-    sink(1, response)
-  } catch (error) {
-    abortable = false
-    if (!unsubscribed) {
-      // Only forward the error if it wasn't an abort.
-      sink(2, error)
+  async function fetchable() {
+    try {
+      const response = await fetch(input, init)
+      abortable = false
+      shadow(1, response)
+      sink(1, response)
+    } catch (error) {
+      abortable = false
+      if (!unsubscribed) {
+        // Only forward the error if it wasn't an abort.
+        sink(2, error)
+      }
     }
   }
+
+  fetchable()
 
   sink(
     0,
