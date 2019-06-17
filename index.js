@@ -1,3 +1,5 @@
+import makeShadow from 'shadow-callbag'
+
 const fromFetch = (input, init) => async (start, sink) => {
   if (start !== 0) return
 
