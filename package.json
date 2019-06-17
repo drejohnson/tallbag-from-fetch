@@ -1,6 +1,6 @@
 {
   "name": "tallbag-from-fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basically RxJS's fromFetch converted to a tallbag listenable source.",
   "main": "index.js",
   "module": "index.js",
