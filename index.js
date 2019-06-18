@@ -36,6 +36,7 @@ const fromFetch = (input, init) => (start, sink) => {
       abortable = false
       if (!unsubscribed) {
         // Only forward the error if it wasn't an abort.
+        shadow(2, error)
         sink(2, error)
       }
     }
