@@ -2,7 +2,7 @@
   "name": "tallbag-from-fetch",
   "version": "1.0.3",
   "description": "Basically RxJS's fromFetch converted to a tallbag listenable source.",
-  "main": "index.js",
+  "main": "index.cjs.js",
   "module": "index.js",
   "homepage": "https://github.com/drejohnson/tallbag-from-fetch#readme",
   "author": "Dre Johnson <dre@phreshr.com>",
@@ -16,8 +16,14 @@
     "fetch"
   ],
   "license": "MIT",
+  "scripts": {
+    "build": "rollup $npm_package_module -o $npm_package_main --f cjs"
+  },
   "dependencies": {
     "shadow-callbag": "~1.0.0",
     "tallbag": "~1.2.0"
+  },
+  "devDependencies": {
+    "rollup": "^1.15.6"
   }
 }
